@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>画布</title>
+    <script type="text/javascript">
+        function draw15() {
+            var canvas = document.getElementById("myCanvas1");
+            if (canvas === null)
+                return false;
+            var context = canvas.getContext("2d");
+            context.fillStyle = "black";
+            context.fillRect(0, 0, 400, 300);
+            image = new Image();
+            image.onload = function () {
+                drawImg1(context,image);
+            };
+            image.src = "image.png"
+        }
+        function drawImg1(context, image) {
+//圆形裁剪区
+//createCircleClip(context);
+//星形裁剪区
+            create5StarClip(context);
+            context.drawImage(image,0,0);
+        }
+
+         function create5StarClip(context) {
+            var n = 0;
+            var dx = 200;
+            var dy = 135;
+            var s = 150;
+            context.beginPath();
+            var x = Math.sin(0);
+            var y = Math.cos(0);
+            var dig = Math.PI / 5 * 4;
+            for (var i = 0; i < 5; i++) {
+                var x = Math.sin(i * dig);
+                var y = Math.cos(i * dig);
+                context.lineTo(dx + x * s, dy + y * s);
+            }
+            context.closePath();
+            context.clip();
+        }
+
+
+
+        function draw1() {
+            var canvas = document.getElementById("myCanvas2");
+            if (canvas == null)
+                return false;
+            var context = canvas.getContext("2d");
+            context.fillStyle = "black";
+            context.fillRect(0, 0, 400, 300);
+            image = new Image();
+            image.onload = function () {
+                drawImg(context,image);
+            }
+            image.src = "image2.png"
+        }
+        function drawImg(context, image) {
+//圆形裁剪区
+            createCircleClip(context);
+            context.drawImage(image,0,0);
+        }
+        function createCircleClip(context) {
+            context.beginPath();
+            context.arc(200, 150, 100, 0, Math.PI * 2, true);
+            context.closePath();
+            context.clip();
+        }
+
+        window.onload=function(){
+            draw15();
+            draw1();
+        }
+        </script>
+</head>
+<body>
+<canvas id="myCanvas1" width="600" height="300"></canvas>
+<br />
+<canvas id="myCanvas2" width="600" height="300"></canvas>
+
+
+</body>
+</html>
