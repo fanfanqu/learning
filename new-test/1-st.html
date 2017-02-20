@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #myVideo {
+            margin-top: 20px;
+            width: 500px;
+        }
+    </style>
+    <script type='text/javascript'>
+        let oVideo = document.getElementById('myVideo');
+        function playOrPause() {
+            if (oVideo.paused)
+                oVideo.play();
+            else
+                oVideo.pause();
+        }
+        function makeBig() {
+            oVideo.style.width = 900;
+        }
+        function makeSmall() {
+            oVideo.style.width = 300;
+        }
+        function makeMiddle() {
+            oVideo.style.width = 600;
+        }
+    </script>
+</head>
+<body>
+<button onclick="playOrPause()">播放/暂停</button>
+<button onclick="makeBig()">大</button>
+<button onclick="makeMiddle()">中</button>
+<button onclick="makeSmall()">小</button>
+<br/>
+<video id='myVideo' width='600px'>
+    <source src='first.mp4' type='video/mp4'>
+</video>
+
+</body>
+</html>

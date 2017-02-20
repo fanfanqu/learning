@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>拖放</title>
+    <style type='text/css'>
+        #div1 {
+            width: 300px;
+            height: 100px;
+            border: 1px;
+        }
+    </style>
+</head>
+<body>
+<div id='div1' ondragover="allowDrop(event)" ondrop="drop(event)"></div>
+<img id="img1" src="img1.PNG" style="width: 183px;height: 43px" draggable="true" ondragstart="drag(event)"/>
+</body>
+<script type="text/javascript">
+    let oImg = document.getElementById('img1');
+    function drag(event) {
+        event.dataTransfer.setData('text', oImg);
+    }
+    function allowDrop(event) {
+        event.preventDefault();
+    }
+    function drop(event) {
+        event.preventDefault();
+        let data = event.dataTransfer.getData('text');
+        event.target.appendChild(oImg);
+    }
+</script>
+</html>
